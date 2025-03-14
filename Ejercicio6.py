@@ -6,16 +6,17 @@ number = int(input('Ingrese el numero para agregar a la lista.'))
 while (number != 0):
   my_list.append(number)
   number = int(input('Ingrese el número a agregar.'))
-for i in range(len(my_list)):
-  if (my_list[i] % 2 == 0):
-    even_list.append(my_list[i])
+  
+for num in my_list:
+  if (num % 2 == 0):
+    even_list.append(num)
   else:
-    odd_list.append(my_list[i])
+    odd_list.append(num)
 
 # Mostrar las listas
 print (f'Lista de números pares: ')
-for i in range(len(even_list)):
-  print(even_list[i])
+for num in even_list:
+  print(num)
 print (f'Lista de números impares: ')
-for i in range(len(odd_list)):
-  print(odd_list[i])
+for num in odd_list:
+  print(num)
