@@ -30,14 +30,15 @@ for question, ans, correct_index in questions_to_ask:
   # Se selecciona una pregunta aleatoria
   print(question)
 # Se muestra la pregunta y las respuestas posibles
-  for i, ans in enumerate(ans):
-    print(f"{i + 1}. {ans}")
+  for i, option in enumerate(ans):
+    print(f"{i + 1}. {option}")
   # El usuario tiene 2 intentos para responder correctamente
   for intento in range(2):
     user_input = input("Respuesta: ")
     if (not user_input.isdigit() or (int(user_input) - 1 < 0) or (int(user_input) - 1 > 4)): #Se verifica si lo ingresado es un digito o no.
       print(f'Respuesta no válida.')
-      exit(1)
+      import sys
+      sys.exit(1)
     user_input = int(user_input)
     # Se verifica si la respuesta es correcta
     user_input -= 1 # Ajustoel indice
@@ -49,7 +50,7 @@ for question, ans, correct_index in questions_to_ask:
     # Si el usuario no responde correctamente después de 2 intentos,
     # se muestra la respuesta correcta
     print("Incorrecto. La respuesta correcta es:")
-    print(correct_index + 1)
+    print(ans[correct_index])
     score -= 0.5
   # Se imprime un blanco al final de la pregunta
   print()
