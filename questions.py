@@ -35,17 +35,13 @@ for question, ans, correct_index in questions_to_ask:
   # El usuario tiene 2 intentos para responder correctamente
   for intento in range(2):
     user_input = input("Respuesta: ")
-    if (not user_input.isdigit()): #Se verifica si lo ingresado es un digito o no.
+    if (not user_input.isdigit() or (int(user_input) - 1 < 0) or (int(user_input) - 1 > 4)): #Se verifica si lo ingresado es un digito o no.
       print(f'Respuesta no válida.')
       exit(1)
-    else:
-        user_answer = int(user_input)
-        user_answer += -1
-        if (user_answer < 0) or (user_answer > 4):
-          print(f'Respuesta no válida.')
-          exit(1)
+    user_input = int(user_input)
     # Se verifica si la respuesta es correcta
-    if user_answer == correct_index:
+    user_input -= 1 # Ajustoel indice
+    if user_input == correct_index:
         print("¡Correcto!")
         score += 1
         break
@@ -53,8 +49,8 @@ for question, ans, correct_index in questions_to_ask:
     # Si el usuario no responde correctamente después de 2 intentos,
     # se muestra la respuesta correcta
     print("Incorrecto. La respuesta correcta es:")
-    print(ans[correct_index])
-    score += -0.5
+    print(correct_index + 1)
+    score -= 0.5
   # Se imprime un blanco al final de la pregunta
   print()
-print ('El juego terminó! El puntaje final fue de {score} puntos.')
+print (f'El juego terminó! El puntaje final fue de {score} puntos.')
