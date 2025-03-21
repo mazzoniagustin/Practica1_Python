@@ -1,4 +1,5 @@
 import random
+import sys
 # Preguntas para el juego
 questions = [
   "¿Qué función se usa para obtener la longitud de una cadena en Python?",
@@ -25,23 +26,28 @@ correct_answers_index = [1, 2, 0, 3, 1]
 
 # El usuario deberá contestar 3 preguntas
 score = 0.0
-questions_to_ask = random.sample(list(zip(questions,answers, correct_answers_index)), k=3) # En esta linea, se cambia el choices por sample para no repetir.
+# En esta linea, se cambia el choices por sample para no repetir.
+questions_to_ask = random.sample(list(zip(questions,answers, correct_answers_index)), k=3) 
+
 for question, ans, correct_index in questions_to_ask:
   # Se selecciona una pregunta aleatoria
   print(question)
+  
 # Se muestra la pregunta y las respuestas posibles
   for i, option in enumerate(ans):
     print(f"{i + 1}. {option}")
+    
   # El usuario tiene 2 intentos para responder correctamente
   for intento in range(2):
     user_input = input("Respuesta: ")
-    if (not user_input.isdigit() or (int(user_input) - 1 < 0) or (int(user_input) - 1 > 4)): #Se verifica si lo ingresado es un digito o no.
+    
+    #Se verifica si lo ingresado es un digito o no.
+    if (not user_input.isdigit() or (int(user_input) - 1 < 0) or (int(user_input) - 1 > 4)): 
       print(f'Respuesta no válida.')
-      import sys
       sys.exit(1)
-    user_input = int(user_input)
-    # Se verifica si la respuesta es correcta
-    user_input -= 1 # Ajustoel indice
+      
+    # Ajusta el indice y el tipo de dato.
+    user_input = int(user_input) -1
     if user_input == correct_index:
         print("¡Correcto!")
         score += 1
@@ -54,4 +60,5 @@ for question, ans, correct_index in questions_to_ask:
     score -= 0.5
   # Se imprime un blanco al final de la pregunta
   print()
+  
 print (f'El juego terminó! El puntaje final fue de {score} puntos.')
